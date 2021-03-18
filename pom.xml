@@ -1,11 +1,13 @@
 <!-- My pom.xml's usually look like this and I don't like retyping stuff -->
 
 <!-- If any of these are not filled out you should -->
-<groupId>us.overflow.anticheat</groupId>
-<artifactId>OverflowPlugin</artifactId>
-<version>2.1</version>
-<name>OverflowPlugin</name>
-<description>Insert Description Here.</description>
+<project>
+     <groupId>us.overflow.anticheat</groupId>
+     <artifactId>OverflowPlugin</artifactId>
+     <version>2.1</version>
+     <name>OverflowPlugin</name>
+     <description>Insert Description Here.</description>
+</project>
 
 <properties>
 	<!-- Removes warnings -->
