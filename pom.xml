@@ -1,77 +1,103 @@
-<!-- My pom.xml's usually look like this and I don't like retyping stuff -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>us.overflow.anticheat</groupId>
+    <artifactId>OverflowPlugin</artifactId>
+    <!-- Version is used in plugin.yml -->
+    <version>2.1</version>
+    <packaging>jar</packaging>
 
-<!-- If any of these are not filled out you should -->
-<project>
-     <groupId>us.overflow.anticheat</groupId>
-     <artifactId>OverflowPlugin</artifactId>
-     <version>2.1</version>
-     <name>OverflowPlugin</name>
-     <description>Insert Description Here.</description>
-</project>
+    <!-- Plugin Information -->
+    <!-- Name, Description, and URL are used in plugin.yml -->
+    <name>OverflowPlugin</name>
+    <description>Overflow Anticheat</description>
+    <url>http://overflow.us/</url>
 
-<properties>
-	<!-- Removes warnings -->
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<!-- Used in plugin.yml -->
-	<mainClass>OverflowPlugin</mainClass>
-	<!-- Also used in plugin.yml -->
-	<author>Idk tbh</author>
-</properties>
-<build>
-	<!-- Uses the properties in this file for plugin.yml and config.yml -->
-	<resources>
-		<resource>
-			<directory>${basedir}/src/main/resources</directory>
-			<filtering>true</filtering>
-			<includes>
-				<include>plugin.yml</include>
-				<include>config.yml</include>
-			</includes>
-		</resource>
-	</resources>
-	<plugins>
-		<!-- Sets the Java version to 8 -->
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>3.1</version>
-			<configuration>
-				<source>1.8</source>
-				<target>1.8</target>
-			</configuration>
-		</plugin>
-		<!-- Sets the custom JARfile name (Project name without spaces is good) -->
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-jar-plugin</artifactId>
-			<version>2.4</version>
-			<configuration>
-				<finalName>${project.name}</finalName>
-			</configuration>
-		</plugin>
-	</plugins>
-</build>
-<!-- This is the spigot repository, if you need others look them up -->
-<repositories>
-	<repository>
-		<id>spigot-repo</id>
-		<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-	</repository>
-	<repository>
-                <id>dmulloy2-repo</id>
-                <url>https://repo.dmulloy2.net/repository/public/</url>
-        </repository>
-</repositories>
-<!-- Spigot dependency version, if you need others look them up -->
-<dependencies>
-	<dependency>
-		<groupId>org.spigotmc</groupId>
-		<artifactId>spigot-api</artifactId>
-		<version>1.8.8-R0.1-SNAPSHOT</version>
-	</dependency>
-	<dependency>
-                <groupId>com.comphenix.protocol</groupId>
-                <artifactId>ProtocolLib</artifactId>
-                <version>4.6.0</version>
+    <licenses>
+        <license>
+            <name>Zlib License</name>
+            <url>http://opensource.org/licenses/Zlib</url>
+            <comments>Copyright (c) 2014 Shaila Gray
+            This software is provided 'as-is', without any express or implied
+            warranty. In no event will the authors be held liable for any damages
+            arising from the use of this software.
+
+            Permission is granted to anyone to use this software for any purpose,
+            including commercial applications, and to alter it and redistribute it
+            freely, subject to the following restrictions:
+
+            1. The origin of this software must not be misrepresented; you must not
+            claim that you wrote the original software. If you use this software
+            in a product, an acknowledgment in the product documentation would be
+            appreciated but is not required.
+
+            2. Altered source versions must be plainly marked as such, and must not be
+            misrepresented as being the original software.
+
+            3. This notice may not be removed or altered from any source
+            distribution.</comments>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+                <name>PixchureLive</name>
+                <url>http://twitch.tv/pixchurelive</url>
+        </developer>
+    </developers>
+
+    <properties>
+        <!--  Author and MainClass are used in plugin.yml -->
+        <author>SGray</author>
+        <mainClass>me.sgray.template.spigotplugin.SpigotPlugin</mainClass>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.8-R0.1-SNAPSHOT</version>
         </dependency>
-</dependencies>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <defaultGoal>clean install</defaultGoal>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- Keeping filtering at true here reduces plugin.yml redundancy! -->
+                <filtering>true</filtering>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- Keep filtering at false for other resources to prevent bad magic -->
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                    <exclude>plugin.yml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
